@@ -1,1 +1,10 @@
-<h1>Funziona!</h1>
+<div class="mui-row">
+    <div ng-if="vm.detailResponse.avatar_url" class="mui-col-xs-12 mui--text-center">
+        <img ng-src="{{vm.detailResponse.avatar_url}}" style="border-radius: 50%;">
+    </div>
+    <h2 ng-bind="vm.detailResponse.name" class="mui-col-xs-12 mui--text-center"></h2>
+    <p ng-if="vm.detailResponse.bio" ng-bind="vm.detailResponse.bio" class="mui-col-xs-12 mui--text-center"></p>
+    <div ng-if="vm.detailResponse.public_repos > 0" class="mui-col-xs-12 mui--text-center">
+        <button ng-click="vm.showRepositories()" class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Show respositories ({{vm.detailResponse.public_repos}})"></button>
+    </div>
+</div>

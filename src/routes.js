@@ -7,11 +7,11 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             templateUrl: FEATURE_DIR + '/master/master.view.html'
         },
         {
-            name: 'home',
+            name: 'search',
             parent: 'master',
             url: '/',
-            templateUrl: FEATURE_DIR + '/home/home.view.html',
-            controller: 'HomeController',
+            templateUrl: FEATURE_DIR + '/search/search.view.html',
+            controller: 'SearchController',
             controllerAs: 'vm'
         },
         {
@@ -23,16 +23,35 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controllerAs: 'vm',
             resolve: {
                 detailResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
-                    var User = $resource(BASE_URL + '/users/:username', {username: '@username'});
-                    return User.get({ username: $stateParams.username })
+                    return $resource(BASE_URL + '/users/:username', {username: '@username'})
+                        .get({ username: $stateParams.username })
                         .$promise.then(
-                            function(user) {
-                                return user;
+                            function(response) {
+                                return response;
                             },
                             function(error) {
                                 return error;
                             }
-                    );
+                        );
+                }]
+            }
+        },
+        {
+            name: 'repos',
+            parent: 'master',
+            url: '/detail/:username/repos',
+            templateUrl: FEATURE_DIR + '/repos/repos.view.html',
+            controller: 'ReposController',
+            controllerAs: 'vm',
+            resolve: {
+                reposResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
+                    return $resource(BASE_URL + '/users/:username/repos', {username: '@username'})
+                        .get({ username: $stateParams.username })
+                        .$promise.then(
+                            function(response) {
+                                return response;
+                            }
+                        );
                 }]
             }
         }
