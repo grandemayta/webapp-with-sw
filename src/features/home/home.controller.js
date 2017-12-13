@@ -1,11 +1,10 @@
-function HomeController(BASE_URL, $scope, $resource) {
-    var User = $resource(BASE_URL + '/users/grandemayta');
-    User.get(function(user) {
-        console.log(user.company);
-    });
-    
-    $scope.message = 'Welcome SW!';
+function HomeController(BASE_URL, $state) {
+    this.search = '';
+
+    this.searchUser = function() {
+        $state.go('detail', {username: this.search});
+    };
 }
 
-HomeController.$inject = ['BASE_URL', '$scope', '$resource'];
+HomeController.$inject = ['BASE_URL', '$state'];
 app.controller('HomeController', HomeController);
