@@ -24,15 +24,15 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             resolve: {
                 detailResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
                     return $resource(BASE_URL + '/users/:username', {username: '@username'})
-                        .get({ username: $stateParams.username })
-                        .$promise.then(
-                            function(response) {
-                                return response;
-                            },
-                            function(error) {
-                                return error;
-                            }
-                        );
+                            .get({ username: $stateParams.username })
+                            .$promise.then(
+                                function(response) {
+                                    return response;
+                                },
+                                function(error) {
+                                    return error;
+                                }
+                            );
                 }]
             }
         },
@@ -46,12 +46,12 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             resolve: {
                 reposResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
                     return $resource(BASE_URL + '/users/:username/repos', {username: '@username'})
-                        .get({ username: $stateParams.username })
-                        .$promise.then(
-                            function(response) {
-                                return response;
-                            }
-                        );
+                            .query({ username: $stateParams.username })
+                            .$promise.then(
+                                function(response) {
+                                    return response;
+                                }
+                            );
                 }]
             }
         }
