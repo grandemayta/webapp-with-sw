@@ -15,22 +15,19 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controllerAs: 'vm'
         },
         {
-            name: 'detail',
+            name: 'user',
             parent: 'master',
-            url: '/detail/:username',
-            templateUrl: FEATURE_DIR + '/detail/detail.view.html',
-            controller: 'DetailController',
+            url: '/user/:username',
+            templateUrl: FEATURE_DIR + '/user/user.view.html',
+            controller: 'UserController',
             controllerAs: 'vm',
             resolve: {
-                detailResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
+                userResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
                     return $resource(BASE_URL + '/users/:username', {username: '@username'})
                             .get({ username: $stateParams.username })
                             .$promise.then(
                                 function(response) {
                                     return response;
-                                },
-                                function(error) {
-                                    return error;
                                 }
                             );
                 }]
@@ -39,13 +36,32 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
         {
             name: 'repos',
             parent: 'master',
-            url: '/detail/:username/repos',
+            url: '/user/:username/repos',
             templateUrl: FEATURE_DIR + '/repos/repos.view.html',
             controller: 'ReposController',
             controllerAs: 'vm',
             resolve: {
                 reposResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
                     return $resource(BASE_URL + '/users/:username/repos', {username: '@username'})
+                            .query({ username: $stateParams.username })
+                            .$promise.then(
+                                function(response) {
+                                    return response;
+                                }
+                            );
+                }]
+            }
+        },
+        {
+            name: 'followers',
+            parent: 'master',
+            url: '/user/:username/followers',
+            templateUrl: FEATURE_DIR + '/followers/followers.view.html',
+            controller: 'FollowersController',
+            controllerAs: 'vm',
+            resolve: {
+                followersResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
+                    return $resource(BASE_URL + '/users/:username/followers', {username: '@username'})
                             .query({ username: $stateParams.username })
                             .$promise.then(
                                 function(response) {

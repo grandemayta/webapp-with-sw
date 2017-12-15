@@ -1,0 +1,29 @@
+<div class="mui-row">
+    <div ng-if="vm.userResponse.avatar_url" class="mui-col-xs-12 mui--text-center">
+        <img ng-src="{{vm.userResponse.avatar_url}}" style="border-radius: 50%;">
+    </div>
+    <h2 ng-bind="vm.userResponse.name" class="mui-col-xs-12 mui--text-center"></h2>
+    <p ng-if="vm.userResponse.login" class="mui-col-xs-12 mui--text-center" ng-bind-template="Nickname: {{vm.userResponse.login}}"></p>
+    <p ng-if="vm.userResponse.location" class="mui-col-xs-12 mui--text-center" ng-bind-template="Location: {{vm.userResponse.location}}"></p>
+    <p ng-if="vm.userResponse.bio" ng-bind="vm.userResponse.bio" class="mui-col-xs-12 mui--text-center"></p>
+    
+    <div class="mui-col-xs-12 mui--text-center">
+        <div class="mui-dropdown">
+            <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+                Actions
+                <span class="mui-caret"></span>
+            </button>
+            <ul class="mui-dropdown__menu">
+                <li ng-if="vm.userResponse.public_repos > 0">
+                    <button ui-sref="repos({username: vm.userResponse.login})" class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Respositories ({{vm.userResponse.public_repos}})"></button>
+                </li>
+                <li ng-if="vm.userResponse.followers > 0">
+                    <button ui-sref="followers({username: vm.userResponse.login})" class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Followers ({{vm.userResponse.followers}})"></button>
+                </li>
+                <li ng-if="vm.userResponse.following > 0">
+                    <button class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Following ({{vm.userResponse.following}})"></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ function SearchController(BASE_URL, $state) {
     this.search = '';
 
     this.searchUser = function() {
-        $state.go('detail', {username: this.search});
+        $state.go('user', {username: this.search});
     };
 }
 
