@@ -70,6 +70,25 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
                             );
                 }]
             }
+        },
+        {
+            name: 'following',
+            parent: 'master',
+            url: '/user/:username/following',
+            templateUrl: FEATURE_DIR + '/following/following.view.html',
+            controller: 'FollowingController',
+            controllerAs: 'vm',
+            resolve: {
+                followingResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
+                    return $resource(BASE_URL + '/users/:username/following', {username: '@username'})
+                            .query({ username: $stateParams.username })
+                            .$promise.then(
+                                function(response) {
+                                    return response;
+                                }
+                            );
+                }]
+            }
         }
     ];
 

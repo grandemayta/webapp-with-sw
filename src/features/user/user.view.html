@@ -21,7 +21,7 @@
                     <button ui-sref="followers({username: vm.userResponse.login})" class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Followers ({{vm.userResponse.followers}})"></button>
                 </li>
                 <li ng-if="vm.userResponse.following > 0">
-                    <button class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Following ({{vm.userResponse.following}})"></button>
+                    <button ui-sref="following({username: vm.userResponse.login})" class="mui-btn mui-btn--flat mui-btn--primary" ng-bind-template="Following ({{vm.userResponse.following}})"></button>
                 </li>
             </ul>
         </div>
