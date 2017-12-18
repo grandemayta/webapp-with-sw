@@ -8,7 +8,7 @@
     <p ng-if="vm.userResponse.location" class="mui-col-xs-12 mui--text-center" ng-bind-template="Location: {{vm.userResponse.location}}"></p>
     <p ng-if="vm.userResponse.bio" ng-bind="vm.userResponse.bio" class="mui-col-xs-12 mui--text-center"></p>
     
-    <div class="mui-col-xs-12 mui--text-center">
+    <div ng-if="vm.userResponse.public_repos > 0 || vm.userResponse.followers > 0 || vm.userResponse.following > 0" class="mui-col-xs-12 mui--text-center">
         <div class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
                 Actions
