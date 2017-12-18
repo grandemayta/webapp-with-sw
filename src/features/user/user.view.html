@@ -1,6 +1,7 @@
 <div class="mui-row">
+    <div class="spacer spacer-20"></div>
     <div ng-if="vm.userResponse.avatar_url" class="mui-col-xs-12 mui--text-center">
-        <img ng-src="{{vm.userResponse.avatar_url}}" style="border-radius: 50%;">
+        <img ng-src="{{vm.userResponse.avatar_url}}" style="width: 50%; border-radius: 50%;">
     </div>
     <h2 ng-bind="vm.userResponse.name" class="mui-col-xs-12 mui--text-center"></h2>
     <p ng-if="vm.userResponse.login" class="mui-col-xs-12 mui--text-center" ng-bind-template="Nickname: {{vm.userResponse.login}}"></p>

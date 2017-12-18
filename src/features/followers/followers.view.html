@@ -1,18 +1,19 @@
 <div class="mui-row">
-        <h2 class="mui-col-xs-12">Followers</h2>
-        <div ng-repeat="follower in vm.followersResponse track by follower.id" class="mui-col-xs-12">
-            <div class="mui-panel">
-                <div class="mui-col-xs-12">
-                    <a ng-bind="follower.login"></a>
-                    <div class="spacer spacer-20"></div>
-                    <div class="mui-divider"></div>
-                </div>
-                <div class="mui-col-xs-12 mui--text-right">
-                    <div class="spacer spacer-20"></div>
-                    <button ui-sref="user({username: follower.login})" class="mui-btn mui-btn--small mui-btn--primary">
-                        Show Profile
-                    </button>
-                </div>
+    <h2 class="mui-col-xs-12">Followers</h2>
+    <div ng-repeat="follower in vm.followersResponse track by follower.id" class="mui-col-xs-12">
+        <div class="mui-panel">
+            <div class="mui-col-xs-12 mui--text-center">
+                <img ng-src="{{follower.avatar_url}}" style="width: 40%; border-radius: 50%;">
+                <h3 ng-bind="follower.login"></h3>
+                <div class="spacer spacer-20"></div>
+                <div class="mui-divider"></div>
+            </div>
+            <div class="mui-col-xs-12 mui--text-center">
+                <div class="spacer spacer-20"></div>
+                <button ui-sref="user({username: follower.login})" class="mui-btn mui-btn--small mui-btn--flat mui-btn--primary">
+                    Show Profile
+                </button>
             </div>
         </div>
     </div>
+</div>
