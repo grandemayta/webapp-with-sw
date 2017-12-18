@@ -22,14 +22,9 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controller: 'UserController',
             controllerAs: 'vm',
             resolve: {
-                userResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
-                    return $resource(BASE_URL + '/users/:username', {username: '@username'})
-                            .get({ username: $stateParams.username })
-                            .$promise.then(
-                                function(response) {
-                                    return response;
-                                }
-                            );
+                userResponse: ['$stateParams', 'HttpWrapper', function($stateParams, HttpWrapper) {
+                    return HttpWrapper
+                            .get('/users/:username', { username: $stateParams.username }, { username: '@username' });
                 }]
             }
         },
@@ -41,14 +36,9 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controller: 'ReposController',
             controllerAs: 'vm',
             resolve: {
-                reposResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
-                    return $resource(BASE_URL + '/users/:username/repos', {username: '@username'})
-                            .query({ username: $stateParams.username })
-                            .$promise.then(
-                                function(response) {
-                                    return response;
-                                }
-                            );
+                reposResponse: ['$stateParams', 'HttpWrapper', function($stateParams, HttpWrapper) {
+                    return HttpWrapper
+                            .query('/users/:username/repos', { username: $stateParams.username }, { username: '@username' });
                 }]
             }
         },
@@ -60,14 +50,9 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controller: 'FollowersController',
             controllerAs: 'vm',
             resolve: {
-                followersResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
-                    return $resource(BASE_URL + '/users/:username/followers', {username: '@username'})
-                            .query({ username: $stateParams.username })
-                            .$promise.then(
-                                function(response) {
-                                    return response;
-                                }
-                            );
+                followersResponse: ['$stateParams', 'HttpWrapper', function($stateParams, HttpWrapper) {
+                    return HttpWrapper
+                            .query('/users/:username/followers', { username: $stateParams.username }, {username: '@username'});
                 }]
             }
         },
@@ -79,14 +64,9 @@ function Routes(FEATURE_DIR, $stateProvider, $urlRouterProvider) {
             controller: 'FollowingController',
             controllerAs: 'vm',
             resolve: {
-                followingResponse: ['BASE_URL', '$resource', '$stateParams', function(BASE_URL, $resource, $stateParams) {
-                    return $resource(BASE_URL + '/users/:username/following', {username: '@username'})
-                            .query({ username: $stateParams.username })
-                            .$promise.then(
-                                function(response) {
-                                    return response;
-                                }
-                            );
+                followingResponse: ['$stateParams', 'HttpWrapper', function($stateParams, HttpWrapper) {
+                    return HttpWrapper
+                            .query('/users/:username/following', { username: $stateParams.username }, {username: '@username'});
                 }]
             }
         }
