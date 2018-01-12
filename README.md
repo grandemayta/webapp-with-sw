@@ -1,5 +1,6 @@
 # webapp-with-sw
-Web application that implement service worker
+Web application developed with VueJS 2.0 and service worker to handle offline navigation.
+
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/6887120/34886121-5bded4f2-f7c2-11e7-9b58-fe13d0f82e46.jpg" width=200 />
