@@ -1,4 +1,36 @@
 <div class="mui-row">
     <div class="spacer spacer-20"></div>
-    <h2>Funziona!</h2>
+    <div v-if="userResponse.avatar_url" class="mui-col-xs-12 mui--text-center">
+        <img :src="userResponse.avatar_url" style="width: 50%; border-radius: 50%;">
+    </div>
+    <h2 v-text="userResponse.name" class="mui-col-xs-12 mui--text-center"></h2>
+    
+    <p v-if="userResponse.location" class="mui-col-xs-12 mui--text-center">Location: {{userResponse.location}}</p>
+    <p v-if="userResponse.bio" v-text="userResponse.bio" class="mui-col-xs-12 mui--text-center"></p>
+    
+    <div v-if="userResponse.public_repos > 0 || userResponse.followers > 0 || userResponse.following > 0" class="mui-col-xs-12 mui--text-center">
+        <div class="mui-dropdown">
+            <button v-on:click="handlePopover" class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+                Actions
+                <span class="mui-caret"></span>
+            </button>
+            <ul :style="{ display: togglePopover ? 'block': 'none'}" class="mui-dropdown__menu">
+                <li v-if="userResponse.public_repos > 0">
+                    <router-link tag="button" :to="{ name: 'repos', params: { id: userResponse.login }}" class="mui-btn mui-btn--flat mui-btn--primary">
+                        Respositories ({{userResponse.public_repos}})
+                    </router-link>
+                </li>
+                <li v-if="userResponse.followers > 0">
+                    <router-link tag="button" :to="{ name: 'followers', params: { id: userResponse.login }}" class="mui-btn mui-btn--flat mui-btn--primary">
+                        Followers ({{userResponse.followers}})
+                    </router-link>
+                </li>
+                <li v-if="userResponse.following > 0">
+                    <router-link tag="button" :to="{ name: 'following', params: { id: userResponse.login }}" class="mui-btn mui-btn--flat mui-btn--primary">
+                        Following ({{userResponse.following}})
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

@@ -1,15 +1,15 @@
 <div class="mui-row">
     <h2 class="mui-col-xs-12">Repositories</h2>
-    <div ng-repeat="repo in vm.reposResponse track by repo.id" class="mui-col-xs-12">
+    <div v-for="repo in reposResponse" :key="repo.id" class="mui-col-xs-12">
         <div class="mui-panel">
             <div class="mui-col-xs-12">
-                <h4 ng-bind="repo.name"></h4>
+                <h4 v-text="repo.name"></h4>
                 <div class="spacer spacer-20"></div>
                 <div class="mui-divider"></div>
             </div>
             <div class="mui-col-xs-12 mui--text-right">
                 <div class="spacer spacer-20"></div>
-                <a ng-href="{{repo.clone_url}}" target="_blank" class="mui-btn mui-btn--small mui-btn--primary">
+                <a :href="repo.clone_url" target="_blank" class="mui-btn mui-btn--small mui-btn--primary">
                     Clone repo
                 </a>
             </div>

@@ -11,7 +11,8 @@ module.exports = {
     src: `${src}/app.js`,
     vendor: [
       'vue',
-      'vue-router'
+      'vue-router',
+      'vue-resource'
     ]
   },
   output: {

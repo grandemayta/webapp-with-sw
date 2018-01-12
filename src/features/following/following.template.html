@@ -1,18 +1,18 @@
 <div class="mui-row">
     <h2 class="mui-col-xs-12">Following</h2>
-    <div ng-repeat="person in vm.followingResponse track by person.id" class="mui-col-xs-12">
+    <div v-for="follower in followingResponse" :key="follower.id" class="mui-col-xs-12">
         <div class="mui-panel">
             <div class="mui-col-xs-12 mui--text-center">
-                <img ng-src="{{person.avatar_url}}" style="width: 40%; border-radius: 50%;">
-                <h3 ng-bind="person.login"></h3>
+                <img :src="follower.avatar_url" style="width: 40%; border-radius: 50%;">
+                <h3 v-text="follower.login"></h3>
                 <div class="spacer spacer-20"></div>
                 <div class="mui-divider"></div>
             </div>
             <div class="mui-col-xs-12 mui--text-center">
                 <div class="spacer spacer-20"></div>
-                <button ui-sref="user({username: person.login})" class="mui-btn mui-btn--small mui-btn--flat mui-btn--primary">
+                <router-link tag="button" :to="{ name: 'user', params: {id: follower.login }}" class="mui-btn mui-btn--small mui-btn--flat mui-btn--primary">
                     Show Profile
-                </button>
+                </router-link>
             </div>
         </div>
     </div>
