@@ -13,7 +13,7 @@ Web application developed with VueJS 2.0 and service worker to handle offline na
 
 </p>
 
-To launch server type the following command:
+To launch the webapp type the following command:
 
 ```
 npm start
