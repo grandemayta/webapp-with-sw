@@ -12,3 +12,15 @@ Web application developed with VueJS 2.0 and service worker to handle offline na
 <img src="https://user-images.githubusercontent.com/6887120/34886268-cac36c3e-f7c2-11e7-9a59-b7de6151e765.png" width=200 />
 
 </p>
+
+To launch server type the following command:
+
+```
+npm start
+```
+
+## TODO:
+
+```
+Handle production build
+```
