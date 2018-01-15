@@ -1,4 +1,5 @@
 const Webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -17,14 +18,14 @@ module.exports = {
   },
   output: {
     path: dist,
-    filename: 'bundle.app.js'
+    filename: process.env.NODE_ENV === 'PROD' ? 'bundle.app.min.js' : 'bundle.app.js'
   },
   devServer: {
     port: 3002,
     open: true,
     historyApiFallback: true
   },
-  devtool: 'inline-source-map',
+  devtool: process.env.NODE_ENV === 'PROD' ? 'source-map' : 'inline-source-map',
   module: {
     rules: [
       {
@@ -35,6 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin([dist]),
     new HtmlWebpackPlugin({
       template: 'index.template.ejs',
       filename: 'index.html'
@@ -42,14 +44,14 @@ module.exports = {
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'bundle.vendor.js'
+      filename: process.env.NODE_ENV === 'PROD' ? 'bundle.vendor.min.js' : 'bundle.vendor.js'
     })
   ],
   resolve: {
     extensions: ['.js'],
     modules: ['node_modules', 'src'],
     alias: {
-        vue: 'vue/dist/vue.js'
-      }    
+      vue: process.env.NODE_ENV === 'PROD' ? 'vue/dist/vue.min.js': 'vue/dist/vue.js'
+    }
   }
 };

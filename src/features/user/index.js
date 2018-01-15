@@ -1,5 +1,5 @@
 export default {
     name: 'user',
     path: '/user/:id',
-    component: resolve => require(['./user.component'], resolve)
+    component: () => System.import(/* webpackChunkName: "user" */ './user.component')
 };
