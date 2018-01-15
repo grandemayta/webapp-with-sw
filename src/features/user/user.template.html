@@ -28,7 +28,7 @@
                 <li v-if="userResponse.following > 0">
                     <router-link tag="button" :to="{ name: 'following', params: { id: userResponse.login }}" class="mui-btn mui-btn--flat mui-btn--primary">
                         Following ({{userResponse.following}})
-                    </button>
+                    </router-link>
                 </li>
             </ul>
         </div>

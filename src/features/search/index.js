@@ -1,8 +1,5 @@
-import search from './search.component';
-
-
 export default {
     name: 'search',
     path: '/',
-    component: search
+    component: resolve => require(['./search.component'], resolve)
 }

@@ -18,7 +18,7 @@ const router = {
         <div>
             <header class="mui-appbar mui--z1">
                 <div class="mui-container">
-                    <h2 ui-sref="search">WebApp + SW</h2>
+                    <router-link tag="h2" :to="{ name: 'search' }">WebApp + SW</router-link>
                 </div>
             </header>
             <div class="mui-container">
