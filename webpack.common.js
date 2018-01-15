@@ -20,12 +20,6 @@ module.exports = {
     path: dist,
     filename: process.env.NODE_ENV === 'PROD' ? 'bundle.app.min.js' : 'bundle.app.js'
   },
-  devServer: {
-    port: 3002,
-    open: true,
-    historyApiFallback: true
-  },
-  devtool: process.env.NODE_ENV === 'PROD' ? 'source-map' : 'inline-source-map',
   module: {
     rules: [
       {
